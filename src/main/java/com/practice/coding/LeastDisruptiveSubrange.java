@@ -50,8 +50,9 @@ You can see from this, that the best replacement choice here would be
  the 2nd index, which would create a subrange disruption of just 3, 
  compared to all the other options.*/
 
-/*
+/**
  * @author Ganesh Shinde
+ *
  */
 
 public class LeastDisruptiveSubrange {

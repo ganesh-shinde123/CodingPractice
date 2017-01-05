@@ -5,9 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author Ganesh Shinde
+ *
+ */
 public class LeastDisruptiveSubrangeTest {
 
-	LeastDisruptiveSubrange leastDisruptiveSubrange;
+	private LeastDisruptiveSubrange leastDisruptiveSubrange;
 
 	@Before
 	public void init() {
