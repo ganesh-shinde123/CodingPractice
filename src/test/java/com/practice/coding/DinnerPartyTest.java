@@ -5,11 +5,13 @@ package com.practice.coding;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
 /**
  * @author Ganesh Shinde
  *
@@ -21,9 +23,11 @@ public class DinnerPartyTest {
 	public void init() {
 		dinnerParty = new DinnerParty();
 	}
-	
+
 	/**
-	 * Test method for {@link com.practice.coding.DinnerParty#getPossibleSeatingArrangementAtDinnerParty(java.util.List, int)}.
+	 * Test method for
+	 * {@link com.practice.coding.DinnerParty#getPossibleSeatingArrangementAtDinnerParty(java.util.List, int)}
+	 * .
 	 */
 	@Test
 	public void testGetPossibleSeatingArrangementAtDinnerParty() {
@@ -37,10 +41,13 @@ public class DinnerPartyTest {
 		friends.add("Harry");
 		friends.add("Lucifer");
 		List<List<String>> groups = dinnerParty.getPossibleSeatingArrangementAtDinnerParty(friends, 4);
+		// formula = n!/(r! * (n -r))
+		assertEquals(factorial(friends.size()).intValue()
+				/ (factorial(4).intValue() * (factorial(friends.size() - 4).intValue())), groups.size());
 		groups.removeAll(prepareOutput());
 		assertEquals(0, groups.size());
 	}
-	
+
 	@Test
 	public void testGetPossibleSeatingArrangementAtDinnerPartySecond() {
 		List<String> friends = new ArrayList<String>();
@@ -49,11 +56,24 @@ public class DinnerPartyTest {
 		friends.add("3");
 		friends.add("4");
 		List<List<String>> groups = dinnerParty.getPossibleSeatingArrangementAtDinnerParty(friends, 3);
+		// formula = n!/(r! * (n -r))
+		assertEquals(factorial(friends.size()).intValue()
+				/ (factorial(3).intValue() * (factorial(friends.size() - 3).intValue())), groups.size());
 		groups.removeAll(prepareSecondOutput());
 		assertEquals(0, groups.size());
-		
+
 	}
-	
+
+	public BigInteger factorial(int number) {
+		// Note that we have used BigInteger to store the factorial value.
+		BigInteger factValue = BigInteger.ONE;
+
+		for (int i = 2; i <= number; i++) {
+			factValue = factValue.multiply(BigInteger.valueOf(i));
+		}
+		return factValue;
+	}
+
 	public List<List<String>> prepareOutput() {
 		List<String> group = new ArrayList<String>();
 		List<List<String>> groups = new ArrayList<List<String>>();
@@ -478,7 +498,7 @@ public class DinnerPartyTest {
 		groups.add(group);
 		return groups;
 	}
-	
+
 	public List<List<String>> prepareSecondOutput() {
 		List<String> group = new ArrayList<String>();
 		List<List<String>> groups = new ArrayList<List<String>>();
